@@ -1,26 +1,7 @@
 import PropType from 'prop-types'
 import parse from 'html-react-parser'
 import moment from 'moment'
-import styled from 'styled-components'
-
-const SPost = styled.article`
-    
-    margin-top: 25px;
-`
-
-const STitle = styled.h1`
-    font-size: 1.25rem;
-    margin-bottom: 0;
-`
-
-const SPubDate = styled.p`
-    margin: 5px 0;
-    text-align: right;
-`
-
-const SDescription = styled.div`
-    
-`
+import { SPost, STitle, SPubDate, SDescription, SContent, SImage } from './Post.styled'
 
 const Post = ({title, description, pubDate, image}) => {
     const date = moment(pubDate).format('DD/MM/YYYY');
@@ -30,8 +11,10 @@ const Post = ({title, description, pubDate, image}) => {
         <SPost>
             <STitle>{ parse(title) }</STitle>
             <SPubDate>Publicado: { date } { time }</SPubDate>
-            <SDescription>{ parse(description) }</SDescription>
-            { image && <img src={image} alt="" />}
+            <SContent>
+                { image && <SImage src={image} alt="" />}
+                <SDescription>{ parse(description) }</SDescription>
+            </SContent>
         </SPost>        
     )
 }

@@ -1,15 +1,5 @@
 import PropType from 'prop-types'
-import styled from 'styled-components'
-
-const SPagination = styled.nav`
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-`
-
-const SButton = styled.button`
-    cursor: pointer;
-`
+import { SPagination, SButton } from './Pagination.styled';
 
 const Pagination = ({totalPages, currentPage, handleClick}) => {
     const pages = [...Array(totalPages).keys()].map(page => page + 1);
@@ -20,7 +10,7 @@ const Pagination = ({totalPages, currentPage, handleClick}) => {
     return (
         <SPagination>
             {pages.map(num => (
-                <SButton key={num} onClick={() => handleClick(num)}>{num}</SButton>
+                <SButton key={num} onClick={() => handleClick(num)} active={num === currentPage}>{num}</SButton>
             ))}
         </SPagination>
     )

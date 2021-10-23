@@ -1,21 +1,17 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Filter from './components/Filter/Filter';
 import Pagination from './components/Pagination/Pagination';
 import Post from './components/Post/Post';
 import useFetch from './Hooks/useFetch';
+import { SContainer } from './styles/App.styled';
 
 import { POST_PER_PAGE } from './utils/constants'
 import { distinct, sortNumber } from './utils/functions'
 
-const SContainer = styled.div`
-  margin: 0 auto;
-  padding-bottom: 80px;
-  max-width: 80%;
-`
+const url = 'https://itacuruba.pe.gov.br/wp-json/wp/v2/posts';
 
 function App() {
-  const posts = useFetch('https://itacuruba.pe.gov.br/wp-json/wp/v2/posts');
+  const posts = useFetch(url);
   
   const [currentPosts, setCurrentPosts] = useState([]);
   const [category, setCategory] = useState('todos');

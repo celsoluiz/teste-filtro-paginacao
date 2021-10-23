@@ -1,26 +1,20 @@
 import PropType from 'prop-types'
-import styled from 'styled-components'
-
-const SForm = styled.form`
-    margin: 50px 0;
-`
-
-const SLabel = styled.label`
-    display: block;
-`
+import { SFilterContainer, SForm, SLabel, SSelect } from './Filter.styled'
 
 const Filter = ({initialVal, selectVals, handleChange}) => (
-    <SForm>
-        <SLabel>Filtrar por categoria:</SLabel>
-        <select value={initialVal} onChange={(evt) => handleChange(evt.target.value)}>
-            <option value="todos">Todos</option>
-            {
-                selectVals.map((optionVal) => (
-                    <option value={optionVal}>{optionVal}</option>
-                ))
-            }
-        </select>
-    </SForm>
+    <SFilterContainer>
+        <SForm>
+            <SLabel>Filtrar por categoria:</SLabel>
+            <SSelect value={initialVal} onChange={(evt) => handleChange(evt.target.value)}>
+                <option value="todos">Todos</option>
+                {
+                    selectVals.map((optionVal) => (
+                        <option key={optionVal} value={optionVal}>{optionVal}</option>
+                    ))
+                }
+            </SSelect>
+        </SForm>
+    </SFilterContainer>
 )
 
 Filter.propTypes = {

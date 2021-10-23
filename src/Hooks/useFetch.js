@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import PropType from 'prop-types';
 
 const useFetch = (url) => {
@@ -7,9 +8,8 @@ const useFetch = (url) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(url);
-                const resData = await res.json();
-                setData(resData);
+                const res = await axios.get(url);
+                setData(res.data);
             } catch(err) {
                 console.log('useFetch error: ', err);
             }
