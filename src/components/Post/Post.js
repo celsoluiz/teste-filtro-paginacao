@@ -12,7 +12,7 @@ const Post = ({title, description, pubDate, image}) => {
             <STitle>{ parse(title) }</STitle>
             <SPubDate>Publicado: { date } { time }</SPubDate>
             <SContent>
-                { image && <SImage src={image} alt="" />}
+                <SImage src={image} alt="" />
                 <SDescription>{ parse(description) }</SDescription>
             </SContent>
         </SPost>        

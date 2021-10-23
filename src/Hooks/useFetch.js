@@ -6,23 +6,27 @@ const useFetch = (url) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = () => {
             try {
-                const res = await axios.get(url);
-                setData(res.data);
+                axios.all([axios.get(url[0]), axios.get(url[1])]).then(
+                    axios.spread((posts, postImages) =>{
+                        const res = [posts.data, postImages.data];
+                        setData(res);
+                    })
+                );
             } catch(err) {
                 console.log('useFetch error: ', err);
             }
         }
 
         fetchData();
-    }, [url]);
+    }, []);
 
     return data;
 }
 
 useFetch.propTypes = {
-    url: PropType.string.isRequired
+    url: PropType.arrayOf(PropType.string).isRequired
 }
 
 export default useFetch
